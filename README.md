@@ -3,17 +3,17 @@
   <h2><strong>Pioneering Quantum-Safe Security for Financial Systems</strong></h2><br>
   <a href="https://quantumsafe-multisig.web.app">
   <img src="quantumsafe-multisig.web.app(slide).png" alt="QuantumSafe Multisig Web App" width="100%">
-  <a href="https://quantumsafe-multisig.web.app">Visit Quantum-Safe ICCHSM</a>
+  <a href="https://quantumsafe-multisig.web.app">Visit Quantum-Safe ICCHSM Demo</a>
 </div>
 <br>
 
-# Quantum-Safe ICCHSM User Manual
+# Quantum-Safe ICCHSM Demonstration
 
 ## Introduction
 
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) toolkit combines IronCAP™ quantum-safe cryptography with hardware security modules and blockchain technology to secure digital signatures and encrypted data against future quantum computing threats.
 
-This user manual guides you through the demonstration interface for quantum-safe multisignature generation, verification, encryption, and blockchain integration.
+This user manual guides you through the demonstration interface for quantum-safe multisig key generation, signature, verification, key encapsulation, and DID credential generation.
 
 ## Getting Started
 
@@ -48,47 +48,47 @@ This step configures the hardware security module and prepares the message to be
 
 1. **HSM Configuration**:
    - Enter your HSM slot number (default: 1209011109) or use the provided shortcut buttons
-   - Verify your PIN is entered correctly
+   - Verify your PIN (demo: 4321) is entered correctly
    - Note the ID field automatically updates based on your selected PQC method from Step 1
 
 2. **Load the Key**:
    - Click "Load Quantum Key" to initialize the HSM with your selected parameters
    - Check the console output to confirm successful key loading
 
-3. **Message Input**:
-   - Enter the message you want to sign or encrypt in the input field
-   - Click "ENTER >>" to save the message
-   - Click "HASH >>" to generate a cryptographic hash of your message
+3. **RSA/Message Input**:
+   - Enter the RSA/message you want to sign or encrypt in the input field
+   - Click "ENTER >>" to save the RSA/message
+   - Click "HASH >>" to generate a cryptographic hash of your RSA/message
    - The hash will appear in the "Hashed Identifier" area
 
 ### Step 3: Quantum-safe Multisig
 
-This step performs the quantum-safe signature operations:
+This step performs the quantum-safe PQC signature operations:
 
-1. Click "Sign Message/RSA" to create a quantum-safe signature of your message
-2. The signature console will display the operation details
-3. The "Multisig Content" area will display the actual signature value
-4. Click "Verify Multisig" to validate the signature
-5. Check the verification console output to confirm the signature is valid
+1. Click "Sign Message/RSA" to create a quantum-safe signature of your RSA/message
+2. The PQC signature console will display the operation details
+3. The "Multisig Content" area will display the actual PQC signature value
+4. Click "Verify Multisig" to validate the PQC signature
+5. Check the verification console output to confirm the PQC signature is valid
 
 ### Step 4: Quantum-safe Key Encapsulation
 
-This step demonstrates quantum-safe encryption using Key Encapsulation Mechanism (KEM):
+This step demonstrates quantum-safe encryption/decryption using Key Encapsulation Mechanism (KEM):
 
-1. Click "Encapsulate Hashed Identifier" to encrypt your message using the selected encryption method
+1. Click "Encapsulate Hashed Identifier" to encrypt your RSA/message using the selected encryption method
 2. The "Quantum-Safe Encrypt" area will show the operation details
 3. The encrypted content will appear in the "KEM Encapsulation Content" area
-4. Click "Decrypt KEM" to decrypt the message
+4. Click "Decrypt KEM" to decrypt the RSA/message
 5. The decryption details and decrypted content will be displayed in their respective areas
 
 ### Step 5: On-chain DID Credential
 
-This step creates and publishes a Decentralized Identifier (DID) credential to the blockchain:
+This step creates and publishes a Decentralized Identifier (DID) credential to the blockchain ledger:
 
 1. View your "Multisig Identifier" which is automatically generated from the hashed message
 2. Click "Issue Multisig DID Credential" to create a verifiable credential
 3. Review the credential details in the "Issued Verifiable Credential" area
-4. Click "Publish to Blockchain" to record the credential on the Real Matter blockchain
+4. Click "Publish to Blockchain" to record the credential on the Real Matter's Quantumatter Blockchain Ledger
 5. The "Quantumeum Ledger Console" will display the transaction results
 6. Use the provided buttons to view the blockchain explorer or your credential details
 
@@ -120,7 +120,7 @@ The application supports nine combinations of signature and encryption methods, 
 
 - If you receive an error message, check that your PIN and slot numbers are correct
 - Ensure you have completed each step in sequence (hash message before signing, etc.)
-- If blockchain publishing fails, check that you have generated a DID credential first
+- If blockchain ledger publishing fails, check that you have generated a DID credential first
 
 ## Technology Partners
 
@@ -128,11 +128,12 @@ This toolkit is a collaboration between:
 - **01 Communique Laboratory** - Provider of IronCAP™ Quantum-Safe cryptography
 - **Real Matter Technology** - Provider of Chip-Level Blockchain technology
 
-<div align="center">
-  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2>
-</div>
-
 For more information, visit:
 - [IronCAP™](https://ironcap.ca)
 - [Real Matter Technology](https://www.realmatter.io)
-- [Quantumeum Blockchain](https://quantumeum.web.app)
+- [Quantumatter Blockchain](https://quantumatter-blockchain.web.app)
+
+<div align="center">
+  <h2></h2><br>
+  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2>
+</div>
