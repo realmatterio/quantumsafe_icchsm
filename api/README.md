@@ -8,7 +8,7 @@
 <br>
 
 <div align="right">
-  <h2>Jump to > <a href="../README.md">Quantum-Safe ICCHSM Demonstration</a></h2>
+  <h3>Jump to > <a href="../README.md">Quantum-Safe ICCHSM Demonstration</a></h3>
 </div>
 
 <div align="center">
