@@ -5,7 +5,7 @@
 </div>
 
 <a href="https://quantumsafe-multisig.web.app">
-  <img src="quantumsafe-multisig.web.app (slide).png" alt="QuantumSafe Multisig Slide" width="100%">
+  <img src="quantumsafe-multisig.web.app(slide).png" alt="QuantumSafe Multisig Web App" width="100%">
 </a>
 
 <div align="center">
