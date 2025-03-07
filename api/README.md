@@ -1,8 +1,8 @@
 <div align="center">
-  <img src=../"Logo - IronCAP and Real Matter.png" alt="IronCAP and Real Matter Logo" width="100%">
+  <img src="../Logo - IronCAP and Real Matter.png" alt="IronCAP and Real Matter Logo" width="100%">
   <h2><strong>Pioneering Quantum-Safe Security for Financial Systems</strong></h2><br>
   <a href="https://quantumsafe-multisig.web.app">
-  <img src=../"quantumsafe-multisig.web.app(slide).png" alt="QuantumSafe Multisig Web App" width="100%">
+  <img src="../quantumsafe-multisig.web.app(slide).png" alt="QuantumSafe Multisig Web App" width="100%">
   <a href="https://quantumsafe-multisig.web.app">Visit Quantum-Safe ICCHSM Demo</a>
 </div>
 <br>
