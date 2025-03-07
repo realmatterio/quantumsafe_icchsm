@@ -15,10 +15,6 @@
   <h1> Quantum-Safe ICCHSM Demo Menu </h1>
 </div>
 
-## Jump to > [Quantum-Safe ICCHSM API Documentation](api/README.md)
-
-# Quantum-Safe ICCHSM Demonstration
-
 ## Introduction
 
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) toolkit combines IronCAP™ quantum-safe cryptography with hardware security modules and blockchain technology to secure digital signatures and encrypted data against future quantum computing threats.
