@@ -3,9 +3,6 @@
 <div align="center">
   <h2><strong>Pioneering Quantum-Safe Security for Financial Systems</strong></h2><br>
 </div>
-<div align="center">
-  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2>
-</div>
 
 # Quantum-Safe ICCHSM User Manual
 
@@ -127,6 +124,10 @@ The application supports nine combinations of signature and encryption methods, 
 This toolkit is a collaboration between:
 - **01 Communique Laboratory** - Provider of IronCAP™ Quantum-Safe cryptography
 - **Real Matter Technology** - Provider of Chip-Level Blockchain technology
+
+<div align="center">
+  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2>
+</div>
 
 For more information, visit:
 - [IronCAP™](https://ironcap.ca)
