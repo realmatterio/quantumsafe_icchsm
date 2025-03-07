@@ -1,13 +1,15 @@
 <img src="Logo - IronCAP and Real Matter.png" alt="IronCAP and Real Matter Logo" width="100%">
 
 <div align="center">
-  <strong>Pioneering Quantum-Safe Security for Financial Systems</strong>
+  <h2><strong>Pioneering Quantum-Safe Security for Financial Systems</strong></h2>
 </div>
 
+<br>
+
 <div align="center">
-  <strong>Seamless Integration of</strong><br>
-  <strong>Quantum-Safe HSM Module & Lattice-Based Chip Entropy</strong><br>
-  <strong>for PQC Next-Gen Security</strong>
+  <h2><strong>Seamless Integration of</strong></h2><br>
+  <h2><strong>Quantum-Safe HSM Module & Lattice-Based Chip Entropy</strong></h2><br>
+  <h2><strong>for PQC Next-Gen Security</strong></h2>
 </div>
 
 # Quantum-Safe ICCHSM User Manual
