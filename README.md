@@ -7,6 +7,14 @@
 </div>
 <br>
 
+<div align="right">
+  <h3>Jump to > <a href="api/README.md">Quantum-Safe ICCHSM API Documentation</a></h3><br>
+</div>
+
+<div align="center">
+  <h1> Quantum-Safe ICCHSM Demo Menu </h1>
+</div>
+
 ## Jump to > [Quantum-Safe ICCHSM API Documentation](api/README.md)
 
 # Quantum-Safe ICCHSM Demonstration
