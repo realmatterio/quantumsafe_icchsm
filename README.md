@@ -1,12 +1,14 @@
-# Quantum-Safe ICCHSM User Manual
-
-## Introduction
+<img src="Logo - IronCAP and Real Matter.png" alt="IronCAP and Real Matter Logo" width="100%">
 
 **Pioneering Quantum-Safe Security for Financial Systems**
 
 **Seamless Integration of **
 **Quantum-Safe HSM Module   &    Lattice-Based Chip Entropy**
 **for PQC Next-Gen Security**
+
+# Quantum-Safe ICCHSM User Manual
+
+## Introduction
 
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) toolkit combines IronCAP™ quantum-safe cryptography with hardware security modules and blockchain technology to secure digital signatures and encrypted data against future quantum computing threats.
 
