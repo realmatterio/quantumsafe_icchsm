@@ -8,7 +8,7 @@
 <br>
 
 <div align="right">
-  <h3>Jump to > <a href="../README.md">Quantum-Safe ICCHSM Demo Menul/a></h3><br>
+  <h3>Jump to > <a href="../README.md">Quantum-Safe ICCHSM Demo Menu</a></h3><br>
 </div>
 
 <div align="center">
