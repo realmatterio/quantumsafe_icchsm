@@ -11,7 +11,9 @@
   <h2>Jump to > <a href="../README.md">Quantum-Safe ICCHSM Demonstration</a></h2>
 </div>
 
-# Quantum-Safe ICCHSM API Documentation
+<div align="center">
+  <h1> Quantum-Safe ICCHSM API Documentation </h1>
+</div>
 
 ## Overview
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API provides endpoints for quantum-safe cryptographic operations including key management, digital signatures, encryption/decryption, and blockchain integration.
