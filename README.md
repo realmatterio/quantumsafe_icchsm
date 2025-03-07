@@ -3,9 +3,6 @@
 <div align="center">
   <h2><strong>Pioneering Quantum-Safe Security for Financial Systems</strong></h2>
 </div>
-
-<br>
-
 <div align="center">
   <h2><strong>Seamless Integration of</strong></h2><br>
   <h2><strong>Quantum-Safe HSM Module & Lattice-Based Chip Entropy</strong></h2><br>
