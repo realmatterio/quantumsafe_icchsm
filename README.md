@@ -169,5 +169,5 @@ For more information, visit:
 
 <div align="center">
   <h2></h2><br>
-  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2>
+  <h2><strong>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</strong></h2><br>
 </div>
