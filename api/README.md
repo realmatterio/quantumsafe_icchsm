@@ -45,7 +45,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Response**:
   ```json
   {
-    "console_log": "Key object information output"
+    "console_log":"Key object information output"
   }
   ```  
   
@@ -66,7 +66,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Response**:
   ```json
   {
-    "status": "Message saved successfully"
+    "status":"Message saved successfully"
   }
   ```
 
@@ -77,18 +77,19 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Parameters**: None (uses previously stored message)
 - **curl Example**:
   ```bash
-  curl -X POST "https://us-central1-quantumsafe-multisig.cloudfunctions.net/hashMessage"
+  curl -X POST https://hashmessage-kez6dpnjlq-uc.a.run.app
   ```
 - **Response**:
   ```json
   {
-    "binary_content": "hash_value_string", "status": "Message hashed successfully"
+    "binary_content":"hash_value_string",
+    "status":"Message hashed successfully"
   }
   ```
 
-### 3. Signature Operations
+### 3. Quantum-Safe Signature Operations
 
-#### Create a quantum-safe signature of the RSA/message
+#### Create a quantum-safe signature of the RSA/message using the selected mechanism
 - **Function Name**: signmessage
 - **URL**: `https://signmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
@@ -106,7 +107,8 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Response**:
   ```json
   {
-    "console_log":"Using signature algorithm CKM-ICC-SHAKE256-MM-SPHINCSPLUS-SIMPLE\n","operation":"Sign"
+    "console_log":"Using signature algorithm CKM-ICC-SHAKE256-MM-SPHINCSPLUS-SIMPLE",
+    "operation":"Sign"
   }
   ```
 
@@ -122,11 +124,12 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Response**:
   ```json
   {
-    "content": "signature_value"
+    "content":"signature_value"
   }
   ```
 
 #### Verify Multisig to validate the PQC signature
+- **Function Name**: verifysignature
 - **URL**: `https://verifysignature-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -143,13 +146,15 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
 - **Response**:
   ```json
   {
-    "console_log":"Signature is valid","operation":"Verify"}
+    "console_log":"Signature is valid",
+    "operation":"Verify"}
   }
   ```
 
-### 4. Encryption Operations
+### 4. Quantum-safe Key Encapsulation Operations
 
-#### Encrypt Message
+#### Create a quantum-safe encryption of the RSA/message using the selected mechanism
+- **Function Name**: encryptmessage
 - **URL**: `https://encryptmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -157,37 +162,38 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   - `pin` (string, required): PIN for the HSM slot
   - `id` (string, required): Key ID
   - `mechanism` (string, required): Selected quantum-safe mechanism
-- **Response**:
-  ```json
-  {
-    "console_log": "Encryption operation output"
-  }
-  ```
 - **curl Example**:
   ```bash
   curl -X POST https://encryptmessage-kez6dpnjlq-uc.a.run.app \
-    -d "slot=1209011109" \
-    -d "pin=your_pin_here" \
-    -d "id=322601A" \
-    -d "mechanism=ckm-icc-shake256-mm-modern-mceliece"
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109&pin=4321&id=322601A&mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
   ```
-
-#### Read Encrypted Content
-- **URL**: `https://readencrypted-kez6dpnjlq-uc.a.run.app`
-- **Method**: `GET`
-- **Parameters**: None
 - **Response**:
   ```json
   {
-    "content": "encrypted_content"
+    "console_log":"Using encrypt algorithm CKM-ICC-SHAKE256-MM-SPHINCSPLUS-SIMPLE",
+    "operation":"Encrypt"
   }
   ```
+
+#### Read an encrypted message for the KEM encapsulation content
+- **Function Name**: readencrypted
+- **URL**: `https://readencrypted-kez6dpnjlq-uc.a.run.app`
+- **Method**: `GET`
+- **Parameters**: None
 - **curl Example**:
   ```bash
   curl -X GET https://readencrypted-kez6dpnjlq-uc.a.run.app
   ```
+- **Response**:
+  ```json
+  {
+    "content": "KEM_encapsulation_content"
+  }
+  ```
 
-#### Decrypt Message
+#### Decrypt the encrypted message for the KEM encapsulation content
+- **Function Name**: decryptmessage
 - **URL**: `https://decryptmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -195,99 +201,34 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   - `pin` (string, required): PIN for the HSM slot
   - `id` (string, required): Key ID
   - `mechanism` (string, required): Selected quantum-safe mechanism
-- **Response**:
-  ```json
-  {
-    "console_log": "Decryption operation output"
-  }
-  ```
 - **curl Example**:
   ```bash
   curl -X POST https://decryptmessage-kez6dpnjlq-uc.a.run.app \
-    -d "slot=1209011109" \
-    -d "pin=your_pin_here" \
-    -d "id=322601A" \
-    -d "mechanism=ckm-icc-shake256-mm-modern-mceliece"
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109&pin=4321&id=322601A&mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
+  ```
+- **Response**:
+  ```json
+  {
+    "console_log":"Using decrypt algorithm CKM-ICC-SHAKE256-MM-SPHINCSPLUS-SIMPLE",
+    "operation":"Decrypt"
+  }
   ```
 
-#### Read Decrypted Content
+#### Read the decrypted KEM encapsulation content from the encrypted message
+- **Function Name**: readdecrypted
 - **URL**: `https://readdecrypted-kez6dpnjlq-uc.a.run.app`
 - **Method**: `GET`
 - **Parameters**: None
+- **curl Example**:
+  ```bash
+  curl -X GET https://readdecrypted-kez6dpnjlq-uc.a.run.app
+  ```
 - **Response**:
   ```json
   {
     "content": "decrypted_content"
   }
-  ```
-- **curl Example**:
-  ```bash
-  curl -X GET https://readdecrypted-kez6dpnjlq-uc.a.run.app
-  ```
-
-### 5. Blockchain Integration
-
-#### Publish to Blockchain
-- **URL**: `https://us-central1-quantumsafe-multisig.cloudfunctions.net/publishBlockchain`
-- **Method**: `PUT`
-- **Content-Type**: `application/json`
-- **Request Body**:
-  ```json
-  {
-    "command": "createVc",
-    "dMessage": {
-      "@context": "ICCHSM Multisig Credential V1 JS",
-      "cName": "Quantum-Safe Multisig",
-      "claim": {
-        "did-icchsm-rsa": "hashed_content",
-        "muitiSig": "sign_console_output",
-        "quantumKey": "quantum_key"
-      },
-      "contract": {
-        "method": "Description of the method",
-        "developer": "Developer information"
-      },
-      "proofSignature": "signature_content",
-      "publicKey": "public_key"
-    },
-    "from": "quantumeum",
-    "to": "did-icchsm-rsa-hashed_content",
-    "zHash": "hashed_content",
-    "zSignature": "signature_content"
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "transaction_details": "Blockchain transaction information"
-  }
-  ```
-- **curl Example**:
-  ```bash
-  curl -X PUT https://us-central1-quantumsafe-multisig.cloudfunctions.net/publishBlockchain \
-    -H "Content-Type: application/json" \
-    -d '{
-      "command": "createVc",
-      "dMessage": {
-        "@context": "ICCHSM Multisig Credential V1 JS",
-        "cName": "Quantum-Safe Multisig",
-        "claim": {
-          "did-icchsm-rsa": "7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c",
-          "muitiSig": "Signature operation completed successfully...",
-          "quantumKey": "322601A"
-        },
-        "contract": {
-          "method": "SPHINCS+ with Modern McEliece",
-          "developer": "Quantum-Safe ICCHSM Demo"
-        },
-        "proofSignature": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
-        "publicKey": "d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2"
-      },
-      "from": "quantumeum",
-      "to": "did-icchsm-rsa-7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c",
-      "zHash": "7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c",
-      "zSignature": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
-    }'
   ```
 
 ## Error Responses
