@@ -22,69 +22,74 @@ The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API pro
 All endpoints are accessible via Firebase Cloud Functions with the base URL:
 `https://{function-name}-kez6dpnjlq-uc.a.run.app`
 
-## Authentication
+## PIN Authentication
 All endpoints accept POST requests with form-encoded data. No authentication header is required, but operations using the HSM require a valid slot ID and PIN.
 
 ## Endpoints
 
-### 1. Message Management
+### 1. HSM Key Management
 
-#### Write Message
+#### Show Quantum-Safe Keys from the selected HSM slot
+- **Function Name**: showkey
+- **URL**: `https://showkey-kez6dpnjlq-uc.a.run.app`
+- **Method**: `POST`
+- **Parameters**:
+  - `slot` (string, required): HSM slot ID (e.g., "1209011109" or "1661660599")
+  - `pin` (string, required): PIN for the HSM slot
+- **curl Example**:
+  ```bash
+  curl -X POST https://showkey-kez6dpnjlq-uc.a.run.app \
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109&pin=4321"
+  ```
+- **Response**:
+  ```json
+  {
+    "console_log": "Key object information output"
+  }
+  ```  
+  
+### 2. RSA/Message Input
+
+#### Enter the RSA/message to be signed or encrypted by the quantum-safe ICCHSM
+- **Function Name**: writemessage
 - **URL**: `https://writemessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
   - `message` (string, required): The message to store for signing or encryption
+- **curl Example**:
+  ```bash
+  curl -X POST https://writemessage-kez6dpnjlq-uc.a.run.app \
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "message=This is a test RSA/message to be signed or encrypted"
+  ```
 - **Response**:
   ```json
   {
     "status": "Message saved successfully"
   }
   ```
-- **curl Example**:
-  ```bash
-  curl -X POST https://writemessage-kez6dpnjlq-uc.a.run.app \
-    -d "message=This is a test message for quantum-safe encryption"
-  ```
 
-#### Hash Message
+#### Generate a cryptographic hash of the RSA message as a DID identifier
+- **Function Name**: hashmessage
 - **URL**: `https://hashmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**: None (uses previously stored message)
+- **curl Example**:
+  ```bash
+  curl -X POST "https://us-central1-quantumsafe-multisig.cloudfunctions.net/hashMessage"
+  ```
 - **Response**:
   ```json
   {
-    "binary_content": "hash_value_string"
+    "binary_content": "hash_value_string", "status": "Message hashed successfully"
   }
-  ```
-- **curl Example**:
-  ```bash
-  curl -X POST https://hashmessage-kez6dpnjlq-uc.a.run.app
-  ```
-
-### 2. Key Management
-
-#### Show Key
-- **URL**: `https://showkey-kez6dpnjlq-uc.a.run.app`
-- **Method**: `POST`
-- **Parameters**:
-  - `slot` (string, required): HSM slot ID (e.g., "1209011109" or "1661660599")
-  - `pin` (string, required): PIN for the HSM slot
-- **Response**:
-  ```json
-  {
-    "console_log": "Key information output"
-  }
-  ```
-- **curl Example**:
-  ```bash
-  curl -X POST https://showkey-kez6dpnjlq-uc.a.run.app \
-    -d "slot=1209011109" \
-    -d "pin=your_pin_here"
   ```
 
 ### 3. Signature Operations
 
-#### Sign Message
+#### Create a quantum-safe signature of the RSA/message
+- **Function Name**: signmessage
 - **URL**: `https://signmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -92,37 +97,36 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   - `pin` (string, required): PIN for the HSM slot
   - `id` (string, required): Key ID (e.g., "322601A")
   - `mechanism` (string, required): Selected quantum-safe mechanism (e.g., "ckm-icc-shake256-mm-sphincsplus-simple")
-- **Response**:
-  ```json
-  {
-    "console_log": "Signature operation output"
-  }
-  ```
 - **curl Example**:
   ```bash
   curl -X POST https://signmessage-kez6dpnjlq-uc.a.run.app \
-    -d "slot=1209011109" \
-    -d "pin=your_pin_here" \
-    -d "id=322601A" \
-    -d "mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109&pin=4321&id=322601A&mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
+  ```
+- **Response**:
+  ```json
+  {
+    "console_log":"Using signature algorithm CKM-ICC-SHAKE256-MM-SPHINCSPLUS-SIMPLE\n","operation":"Sign"
+  }
   ```
 
-#### Read Signature
+#### Display the PQC signature value of the Multi-sig content 
+- **Function Name**: readsignature
 - **URL**: `https://readsignature-kez6dpnjlq-uc.a.run.app`
 - **Method**: `GET`
 - **Parameters**: None
+- **curl Example**:
+  ```bash
+  curl -X GET https://readsignature-kez6dpnjlq-uc.a.run.app
+  ```
 - **Response**:
   ```json
   {
     "content": "signature_value"
   }
   ```
-- **curl Example**:
-  ```bash
-  curl -X GET https://readsignature-kez6dpnjlq-uc.a.run.app
-  ```
 
-#### Verify Signature
+#### Verify Multisig to validate the PQC signature
 - **URL**: `https://verifysignature-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -130,19 +134,17 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   - `pin` (string, required): PIN for the HSM slot
   - `id` (string, required): Key ID
   - `mechanism` (string, required): Selected quantum-safe mechanism
-- **Response**:
-  ```json
-  {
-    "console_log": "Verification result output"
-  }
-  ```
 - **curl Example**:
   ```bash
   curl -X POST https://verifysignature-kez6dpnjlq-uc.a.run.app \
-    -d "slot=1209011109" \
-    -d "pin=your_pin_here" \
-    -d "id=322601A" \
-    -d "mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109&pin=4321&id=322601A&mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
+  ```
+- **Response**:
+  ```json
+  {
+    "console_log":"Signature is valid","operation":"Verify"}
+  }
   ```
 
 ### 4. Encryption Operations
