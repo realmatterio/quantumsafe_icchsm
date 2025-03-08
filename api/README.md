@@ -213,11 +213,6 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   ```bash
   curl -X POST https://decryptmessage-kez6dpnjlq-uc.a.run.app \
        -H "Content-Type: application/x-www-form-urlencoded" \
-       -d "slot=1209011109&pin=4321&id=322601A&mechanism=ckm-icc-shake256-mm-sphincsplus-simple"
-  ```
-  ```bash
-  curl -X POST https://decryptmessage-kez6dpnjlq-uc.a.run.app \
-       -H "Content-Type: application/x-www-form-urlencoded" \
        -d "slot=1209011109" \
        -d "pin=4321" \
        -d "id=322601A" \
