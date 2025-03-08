@@ -15,22 +15,28 @@
   <h1> Quantum-Safe ICCHSM API Documentation </h1>
 </div>
 
+
 ## Overview
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API provides endpoints for quantum-safe cryptographic operations including key management, digital signatures, encryption/decryption, and blockchain integration.
+
 
 ## Base URL
 All endpoints are accessible via Firebase Cloud Functions with the base URL:
 `https://{function-name}-kez6dpnjlq-uc.a.run.app`
 
+
 ## PIN Authentication
 All endpoints accept POST requests with form-encoded data. No authentication header is required, but operations using the HSM require a valid slot ID and PIN.
 
+
 ## Service Endpoints
+
 
 ### 1. HSM Key Management
 
+
 #### Show Quantum-Safe Keys from the selected HSM slot
-- **Function Name**: showkey
+- **Function Name**: `showkey`
 - **URL**: `https://showkey-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -49,11 +55,35 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
     "console_log":"Key object information output"
   }
   ```  
+
+
+#### Read the public key of the selected quantum-safe key pair
+- **LOCKED FUNCTION FOR SUBSCRIBED USERS ONLY**:
+- **Function Name**: `publickey`
+- **URL**: `https://publickey-kez6dpnjlq-uc.a.run.app`
+- **Method**: `GET`
+- **Parameters**:
+  - `slot` (string, required): HSM slot ID (e.g., "1209011109" or "1661660599")
+  - `pin` (string, required): PIN for the HSM slot
+- **curl Example**:
+  ```bash
+  curl -X POST https://publickey-kez6dpnjlq-uc.a.run.app \
+       -H "Content-Type: application/x-www-form-urlencoded" \
+       -d "slot=1209011109" \
+       -d "pin=4321"
+  ```
+- **Response**:
+  ```json
+  {
+    "console_log":"Public_key_value_in_DER_format"
+  }
+  ```  
+
   
 ### 2. RSA/Message Input
 
 #### Enter the RSA/message to be signed or encrypted by the quantum-safe ICCHSM
-- **Function Name**: writemessage
+- **Function Name**: `writemessage`
 - **URL**: `https://writemessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -71,8 +101,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Generate a cryptographic hash of the RSA message as a DID identifier
-- **Function Name**: hashmessage
+- **Function Name**: `hashmessage`
 - **URL**: `https://hashmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**: None (uses previously stored message)
@@ -88,10 +119,11 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 ### 3. Quantum-Safe Signature Operations
 
 #### Create a quantum-safe signature of the RSA/message using the selected mechanism
-- **Function Name**: signmessage
+- **Function Name**: `signmessage`
 - **URL**: `https://signmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -115,8 +147,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Display the PQC signature value of the Multi-sig content 
-- **Function Name**: readsignature
+- **Function Name**: `readsignature`
 - **URL**: `https://readsignature-kez6dpnjlq-uc.a.run.app`
 - **Method**: `GET`
 - **Parameters**: None
@@ -131,8 +164,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Verify Multisig to validate the PQC signature
-- **Function Name**: verifysignature
+- **Function Name**: `verifysignature`
 - **URL**: `https://verifysignature-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -156,10 +190,11 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 ### 4. Quantum-safe Key Encapsulation Operations
 
 #### Create a quantum-safe encryption of the RSA/message using the selected mechanism
-- **Function Name**: encryptmessage
+- **Function Name**: `encryptmessage`
 - **URL**: `https://encryptmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -184,8 +219,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Read an encrypted message for the KEM encapsulation content
-- **Function Name**: readencrypted
+- **Function Name**: `readencrypted`
 - **URL**: `https://readencrypted-kez6dpnjlq-uc.a.run.app`
 - **Method**: `GET`
 - **Parameters**: None
@@ -200,8 +236,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Decrypt the encrypted message for the KEM encapsulation content
-- **Function Name**: decryptmessage
+- **Function Name**: `decryptmessage`
 - **URL**: `https://decryptmessage-kez6dpnjlq-uc.a.run.app`
 - **Method**: `POST`
 - **Parameters**:
@@ -226,8 +263,9 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+
 #### Read the decrypted KEM encapsulation content from the encrypted message
-- **Function Name**: readdecrypted
+- **Function Name**: `readdecrypted`
 - **URL**: `https://readdecrypted-kez6dpnjlq-uc.a.run.app`
 - **Method**: `GET`
 - **Parameters**: None
@@ -241,6 +279,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
     "content": "decrypted_content"
   }
   ```
+
 
 ## Error Responses
 All endpoints may return the following error responses:
@@ -257,11 +296,13 @@ Error response format:
 }
 ```
 
+
 ## Technology Partners
 
 This toolkit is a collaboration between:
 - **01 Communique Laboratory** - Provider of IronCAP™ Quantum-Safe cryptography
 - **Real Matter Technology** - Provider of Chip-Level Blockchain technology
+
 
 For more information, visit:
 - [IronCAP™](https://ironcap.ca)
