@@ -25,7 +25,7 @@ All endpoints are accessible via Firebase Cloud Functions with the base URL:
 ## PIN Authentication
 All endpoints accept POST requests with form-encoded data. No authentication header is required, but operations using the HSM require a valid slot ID and PIN.
 
-## Endpoints
+## Service Endpoints
 
 ### 1. HSM Key Management
 
