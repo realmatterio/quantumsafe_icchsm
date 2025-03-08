@@ -15,24 +15,30 @@
   <h1> Quantum-Safe ICCHSM API Documentation </h1>
 </div>
 
+&nbsp;
 
 ## Overview
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API provides endpoints for quantum-safe cryptographic operations including key management, digital signatures, encryption/decryption, and blockchain integration.
 
+&nbsp;
 
 ## Base URL
 All endpoints are accessible via Firebase Cloud Functions with the base URL:
 `https://{function-name}-kez6dpnjlq-uc.a.run.app`
 
+&nbsp;
 
 ## PIN Authentication
 All endpoints accept POST requests with form-encoded data. No authentication header is required, but operations using the HSM require a valid slot ID and PIN.
 
+&nbsp;
 
 ## Service Endpoints
 
+&nbsp;
 
 ### 1. HSM Key Management
+&nbsp;
 
 
 #### Show Quantum-Safe Keys from the selected HSM slot
@@ -56,6 +62,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```  
 
+&nbsp;
 
 #### Read the public key of the selected quantum-safe key pair
 - **LOCKED FUNCTION FOR SUBSCRIBED USERS ONLY**:
@@ -79,7 +86,8 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```  
 
-  
+&nbsp;
+ 
 ### 2. RSA/Message Input
 
 #### Enter the RSA/message to be signed or encrypted by the quantum-safe ICCHSM
@@ -101,6 +109,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Generate a cryptographic hash of the RSA message as a DID identifier
 - **Function Name**: `hashmessage`
@@ -119,8 +128,11 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 ### 3. Quantum-Safe Signature Operations
+
+&nbsp;
 
 #### Create a quantum-safe signature of the RSA/message using the selected mechanism
 - **Function Name**: `signmessage`
@@ -147,6 +159,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Display the PQC signature value of the Multi-sig content 
 - **Function Name**: `readsignature`
@@ -164,6 +177,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Verify Multisig to validate the PQC signature
 - **Function Name**: `verifysignature`
@@ -190,8 +204,11 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 ### 4. Quantum-safe Key Encapsulation Operations
+
+&nbsp;
 
 #### Create a quantum-safe encryption of the RSA/message using the selected mechanism
 - **Function Name**: `encryptmessage`
@@ -219,6 +236,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Read an encrypted message for the KEM encapsulation content
 - **Function Name**: `readencrypted`
@@ -236,6 +254,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Decrypt the encrypted message for the KEM encapsulation content
 - **Function Name**: `decryptmessage`
@@ -263,6 +282,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 #### Read the decrypted KEM encapsulation content from the encrypted message
 - **Function Name**: `readdecrypted`
@@ -280,6 +300,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   }
   ```
 
+&nbsp;
 
 ## Error Responses
 All endpoints may return the following error responses:
@@ -296,13 +317,13 @@ Error response format:
 }
 ```
 
+&nbsp;
 
 ## Technology Partners
 
 This toolkit is a collaboration between:
 - **01 Communique Laboratory** - Provider of IronCAP™ Quantum-Safe cryptography
 - **Real Matter Technology** - Provider of Chip-Level Blockchain technology
-
 
 For more information, visit:
 - [IronCAP™](https://ironcap.ca)
@@ -311,5 +332,5 @@ For more information, visit:
 
 <div align="center">
   <h2></h2><br>
-  <h2><i>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</i></h2>
+  <h2><i>Seamless Integration of Quantum-Safe HSM Module & Lattice-Based Chip Entropy for PQC Next-Gen Security</i><br><br></h2>
 </div>
