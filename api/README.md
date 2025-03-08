@@ -202,7 +202,7 @@ All endpoints accept POST requests with form-encoded data. No authentication hea
   ```json
   {
     "console_log":"Signature is valid",
-    "operation":"Verify"}
+    "operation":"Verify"
   }
   ```
 
