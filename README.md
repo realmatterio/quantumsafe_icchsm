@@ -15,13 +15,19 @@
   <h1> Quantum-Safe ICCHSM Demo Menu </h1>
 </div>
 
+&nbsp;
+
 ## Introduction
 
 The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) toolkit combines IronCAP™ quantum-safe cryptography with hardware security modules and blockchain technology to secure digital signatures and encrypted data against future quantum computing threats.
 
 This user manual guides you through the demonstration interface for quantum-safe multisig key generation, signature, verification, key encapsulation, and DID credential generation.
 
+&nbsp;
+
 ## Getting Started
+
+&nbsp;
 
 ### Accessing the Application
 
@@ -29,11 +35,17 @@ This user manual guides you through the demonstration interface for quantum-safe
 2. When prompted, enter your PIN code to access the HSM functionality
 3. Navigate through the application using the step buttons at the top of the interface
 
+&nbsp;
+
 ## Step-by-Step Guide
+
+&nbsp;
 
 ### Step 1: Select PQC Method
 
 In this step, you'll choose the post-quantum cryptography (PQC) algorithms for signature and encryption:
+
+&nbsp;
 
 #### Available PQC Methods
 
@@ -47,6 +59,8 @@ In this step, you'll choose the post-quantum cryptography (PQC) algorithms for s
 | | Classic McEliece | Code-based encryption |
 
 The selected combination is shown at the bottom of this section as your "Quantum-Safe Key".
+
+&nbsp;
 
 ### Step 2: Load HSM Key and Input
 
@@ -67,6 +81,8 @@ This step configures the hardware security module and prepares the message to be
    - Click "HASH >>" to generate a cryptographic hash of your RSA/message
    - The hash will appear in the "Hashed Identifier" area
 
+&nbsp;
+
 ### Step 3: Quantum-safe Multisig
 
 This step performs the quantum-safe PQC signature operations:
@@ -77,6 +93,8 @@ This step performs the quantum-safe PQC signature operations:
 4. Click "Verify Multisig" to validate the PQC signature
 5. Check the verification console output to confirm the PQC signature is valid
 
+&nbsp;
+
 ### Step 4: Quantum-safe Key Encapsulation
 
 This step demonstrates quantum-safe encryption/decryption using Key Encapsulation Mechanism (KEM):
@@ -86,6 +104,8 @@ This step demonstrates quantum-safe encryption/decryption using Key Encapsulatio
 3. The encrypted content will appear in the "KEM Encapsulation Content" area
 4. Click "Decrypt KEM" to decrypt the RSA/message
 5. The decryption details and decrypted content will be displayed in their respective areas
+
+&nbsp;
 
 ### Step 5: On-chain DID Credential
 
@@ -98,6 +118,8 @@ This step creates and publishes a Decentralized Identifier (DID) credential to t
 5. The "Quantumeum Ledger Console" will display the transaction results
 6. Use the provided buttons to view the blockchain explorer or your credential details
 
+&nbsp;
+
 ## HSM Slot Options
 
 The demonstration supports two HSM slots:
@@ -105,6 +127,8 @@ The demonstration supports two HSM slots:
 - 1661660599 (alternate slot)
 
 Each slot requires its own PIN for access.
+
+&nbsp;
 
 ## Quantum-Safe Mechanisms
 
@@ -122,11 +146,15 @@ The application supports nine combinations of signature and encryption methods, 
 | 322600C | Falcon | Kyber |
 | 3226010 | Falcon | Classic McEliece |
 
+&nbsp;
+
 ## Troubleshooting
 
 - If you receive an error message, check that your PIN and slot numbers are correct
 - Ensure you have completed each step in sequence (hash message before signing, etc.)
 - If blockchain ledger publishing fails, check that you have generated a DID credential first
+
+&nbsp;
 
 ## Technology Partners
 
