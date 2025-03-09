@@ -1,4 +1,4 @@
-### Quantum-Safe ICCHSM API: Pioneering the Next Generation of Financial Security
+## Quantum-Safe ICCHSM API: Pioneering the Next Generation of Financial Security
 
 #### Introduction: Another Y2K Problem in the Making
 
