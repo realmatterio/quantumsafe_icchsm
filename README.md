@@ -52,8 +52,8 @@ In this step, you'll choose the post-quantum cryptography (PQC) algorithms for s
 
 | Category | Method | Description |
 |----------|--------|-------------|
-| **Signature Methods** | Sphincs+ | Stateless hash-based signature scheme (default) |
-| | Dilithium | Lattice-based signature scheme |
+| **Signature Methods** | Sphincs+ SLH-DSA | Stateless hash-based signature scheme (default) |
+| | Dilithium ML-DSA | Lattice-based signature scheme |
 | | Falcon | Compact lattice-based signature scheme |
 | **Encryption Methods** | Modern McEliece | Enhanced version of the code-based encryption (default) |
 | | Kyber ML-KEM | Module-lattice based key encapsulation mechanism |
