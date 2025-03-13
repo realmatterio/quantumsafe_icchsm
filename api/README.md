@@ -19,7 +19,7 @@
 &nbsp;
 
 ## Overview
-The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API Demo Version provides endpoints for quantum-safe cryptographic operations including key management, digital signatures, encryption/decryption, and blockchain integration.
+The Quantum-Safe ICCHSM (IronCAP Cryptographic Hardware Security Module) API Demo Version provides endpoints for quantum-safe cryptographic operations including key management, digital signatures & verification, key encapsulation by encryption & decryption, and blockchain integration.
 
 &nbsp;
 
