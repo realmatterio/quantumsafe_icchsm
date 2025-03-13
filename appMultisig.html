@@ -1,591 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--....."."..
+....~ _>/O O\<_~~
+..~~ ( o     o ) ~~~~
+.~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.~~~ming@hippomatter~~~~~~~~~~~
+...~~~~~~~~~2025 (c)~~-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUANTUM-SAFE ICCHSM</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --cyber-blue: #00f3ff;
-            --cyber-pink: #ff00ff;
-            --cyber-dark: #1a1a2e;
-            --cyber-glow: 0 0 10px var(--cyber-blue);
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--cyber-dark) 0%, #000 100%);
-            color: #fff;
-            font-family: 'Courier New', monospace;
-            min-height: 100vh;
-        }
-
-        .section {
-            border: 1px solid var(--cyber-blue);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            transition: all 0.3s ease;
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(5px);
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 15px;
-            border: 1px solid transparent;
-            background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-pink));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .section.active {
-            box-shadow: 0 0 20px var(--cyber-pink);
-        }
-
-        .section-title {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--cyber-dark);
-            padding: 0 15px;
-            color: var(--cyber-blue);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 20px;
-            border: 1px solid var(--cyber-blue);
-            box-shadow: var(--cyber-glow);
-        }
-
-        .cyber-button {
-            background: transparent;
-            border: 1px solid var(--cyber-blue);
-            color: var(--cyber-blue);
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 25px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cyber-button:hover {
-            background: var(--cyber-blue);
-            color: var(--cyber-dark);
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        .cyber-button.active {
-            background: var(--cyber-blue);
-            color: var(--cyber-dark);
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        .cyber-input {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--cyber-blue);
-            color: #fff;
-            padding: 0.75rem;
-            width: 100%;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .cyber-input:focus {
-            outline: none;
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        pre {
-            background: rgba(0, 243, 255, 0.1);
-            padding: 1rem;
-            overflow-x: auto;
-            margin: 0.5rem 0;
-            border-radius: 10px;
-            border: 1px solid var(--cyber-blue);
-        }
-
-        .quick-nav {
-            display: flex;
-            overflow-x: auto;
-            gap: 0.5rem;
-            padding: 1rem;
-            background: rgba(0, 243, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .title-glow {
-            text-shadow: 0 0 10px var(--cyber-blue);
-            color: var(--cyber-blue);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--cyber-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--cyber-blue);
-            border-radius: 4px;
-        }
-
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
-            margin: 1rem 0;
-        }
-    </style>
+    <link rel="stylesheet" href="app.css">
 </head>
-<body class="container mx-auto px-4 py-8 max-w-4xl">
-    <h1 class="text-3xl text-center mb-6 title-glow font-bold">QUANTUM-SAFE ICCHSM</h1>
 
-    <!-- Quick Navigation -->
-    <div class="quick-nav mb-6">
-        <button class="cyber-button" onclick="scrollToSection('pqc-method')">PQC Method</button>
-        <button class="cyber-button" onclick="scrollToSection('hsm-input')">HSM & Input</button>
-        <button class="cyber-button" onclick="scrollToSection('multisig')">Multisig</button>
-        <button class="cyber-button" onclick="scrollToSection('key-encap')">Key Encap</button>
-        <button class="cyber-button" onclick="scrollToSection('did-cred')">DID Cred</button>
-    </div>
 
-    <!-- Section 1: PQC Method -->
-    <div id="pqc-method" class="section">
-        <span class="section-title">Select PQC Method</span>
-        
-        <h2 class="mb-4 title-glow">NIST Signature Method</h2>
-        <div class="flex flex-wrap gap-2 mb-4">
-            <button class="cyber-button active" data-group="signature" data-value="sphincsplus-simple">Sphincs+</button>
-            <button class="cyber-button" data-group="signature" data-value="dilithium">Dilithium</button>
-            <button class="cyber-button" data-group="signature" data-value="falcon">Falcon</button>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl text-center mt-6 title-glow font-bold">QUANTUM-SAFE ICCHSM</h1>
+        <h2 class="text-xl text-center title-glow">Revolutionizing RSA Signatures with PQC Multisig</h2>  
+        <h2 class="text-lg text-center title-glow">
+            <a href="https://www.linkedin.com/posts/ngminglam_quantum-safe-multisig-activity-7289462185880104961-ATgT?utm_source=share&utm_medium=member_android&rcm=ACoAADGzHmQBt6ixlo6f9ayA1_kX8bv-jxetYRI" target="_blank" rel="noopener noreferrer">
+                〖what's multisig〗
+            </a>
+            <a href="https://www.linkedin.com/posts/realmatterio_quantumsafe-multisig-quantumsafe-activity-7303067957478232064-tKqU?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAADGzHmQBt6ixlo6f9ayA1_kX8bv-jxetYRI" target="_blank" rel="noopener noreferrer">
+                〖video demo〗
+            </a>
+        </h2>
+
+        <!-- Quick Navigation -->
+        <div class="quick-nav mb-10">
+            <button class="cyber-button-step" onclick="scrollToSection('pqc-method')">
+                <div class="step-number">Step 1</div>
+                <div class="step-text">PQC METHOD</div>
+            </button>
+            <button class="cyber-button-step" onclick="scrollToSection('hsm-input')">
+                <div class="step-number">Step 2</div>
+                <div class="step-text">HSM & KEY</div>
+            </button>
+            <button class="cyber-button-step" onclick="scrollToSection('multisig')">
+                <div class="step-number">Step 3</div>
+                <div class="step-text">MULTI-SIG</div>
+            </button>
+            <button class="cyber-button-step" onclick="scrollToSection('key-encap')">
+                <div class="step-number">Step 4</div>
+                <div class="step-text">KEM ENCAP</div>
+            </button>
+            <button class="cyber-button-step" onclick="scrollToSection('did-cred')">
+                <div class="step-number">Step 5</div>
+                <div class="step-text">DID CHAIN</div>
+            </button>
         </div>
 
-        <h2 class="mb-4 title-glow">NIST Encryption Method</h2>
-        <div class="flex flex-wrap gap-2 mb-4">
-            <button class="cyber-button" data-group="encryption" data-value="kyber">Kyber ML-KEM</button>
-            <button class="cyber-button" data-group="encryption" data-value="cm">Classic McEliece</button>
-            <button class="cyber-button active" data-group="encryption" data-value="mm">Modern McEliece</button>
+        <!-- Section 1: PQC Method -->
+        <div id="pqc-method" class="section">
+            <span class="section-title">1# Select PQC Method</span>
+            
+            <h2 class="mt-4 mb-4 text-right title-glow">NIST Signature Method</h2>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button class="cyber-button text-4xl active" data-group="signature" data-value="sphincsplus-simple">Sphincs+</button>
+                <button class="cyber-button text-4xl" data-group="signature" data-value="dilithium">Dilithium</button>
+                <button class="cyber-button text-4xl" data-group="signature" data-value="falcon">Falcon</button>
+            </div>
+
+            <h2 class="mt-8 mb-4 text-right title-glow">NIST Encryption Method</h2>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button class="cyber-button text-4xl" data-group="encryption" data-value="kyber">Kyber ML-KEM</button>
+                <button class="cyber-button text-4xl" data-group="encryption" data-value="cm">Classic McEliece</button>
+                <button class="cyber-button text-4xl active" data-group="encryption" data-value="mm">Modern McEliece</button>
+            </div>
+
+            <h3 class="mt-8 mb-2 text-right title-glow">Selected Quantum-Safe Key</h3>
+            <pre id="quantumSafeKey">ckm-icc-shake256-mm-sphincsplus-simple</pre>
         </div>
 
-        <h2 class="mb-2 title-glow">Selected Quantum-Safe Key</h2>
-        <pre id="quantumSafeKey">ckm-icc-shake256-mm-sphincsplus-simple</pre>
-    </div>
-
-    <!-- Section 2: HSM & Input -->
-    <div id="hsm-input" class="section">
-        <span class="section-title">Load HSM Key and Input</span>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-                <label class="block mb-2">HSM SLOT:</label>
-                <input type="text" id="slot" value="1209011109" class="cyber-input"/>
-                <div class="flex gap-2 mt-2">
-                    <button class="cyber-button" onclick="setSlot('1209011109')">1209011109</button>
-                    <button class="cyber-button" onclick="setSlot('1661660599')">1661660599</button>
+        <!-- Section 2: HSM & Input -->
+        <div id="hsm-input" class="section">
+            <span class="section-title">2# Load HSM Key and Input</span>
+            
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block mb-2 text-right">HSM SLOT:</label>
+                    <input type="text" id="slot" value="1209011109" class="cyber-input"/>
+                    <div class="flex gap-2 mt-2">
+                        <button class="cyber-button" onclick="setSlot('1209011109')">1209011109</button>
+                        <button class="cyber-button" onclick="setSlot('1661660599')">1661660599</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-right">PIN:</label>
+                    <input type="text" id="pin" value="4321" class="cyber-input"/>
+                    <label class="block mb-2 mt-4 text-right">ID:</label>
+                    <input type="text" id="id" value="322601A" readonly class="cyber-input"/>
                 </div>
             </div>
-            <div>
-                <label class="block mb-2">PIN:</label>
-                <input type="text" id="pin" value="4321" class="cyber-input"/>
-                <label class="block mb-2 mt-4">ID:</label>
-                <input type="text" id="id" value="322601A" readonly class="cyber-input"/>
+
+            <button id="showKey" class="cyber-button w-full mb-4">Load Quantum Key</button>
+            
+            <h3 class="mb-2 title-glow text-right">Keyring Slot</h3>
+            <pre id="slotConsoleOutput"></pre>
+
+            <div class="mt-4">
+                <label class="block mb-2 text-right">Input message:</label>
+                <input type="text" id="message" class="cyber-input" placeholder="## Signing Message |OR| RSA Signature ##"/>
+                <div class="flex gap-2 mt-2">
+                    <button id="saveMessage" class="cyber-button">ENTER >></button>
+                    <button id="hashMessage" class="cyber-button">HASH >></button>
+                </div>
+            </div>
+
+            <h3 class="mt-4 title-glow text-right">Hashed Identifier</h3>
+            <pre id="hashedContent"></pre>
+        </div>
+
+        <!-- Section 3: Quantum-safe Multisig -->
+        <div id="multisig" class="section">
+            <span class="section-title">3# Quantum-safe Multisig</span>
+            
+            <button id="signMessage" class="mt-8 cyber-button w-full mb-4">Sign Message/RSA</button>
+            
+            <h2 class="mb-2 title-glow text-right">Quantum-Safe Sign</h2>
+            <pre id="signConsoleOutput"></pre>
+            
+            <h3 class="mt-4 title-glow text-right">Multisig Content</h3>
+            <pre id="signatureContent"></pre>
+
+            <button id="verifySignature" class="cyber-button w-full mt-4">Verify Multisig</button>
+            <pre id="verifyConsoleOutput" class="mt-4"></pre>
+        </div>
+
+        <!-- Section 4: Quantum-safe KEM Encapsulation -->
+        <div id="key-encap" class="section">
+            <span class="section-title">4# Quantum-safe Key Encapsulation</span>
+            
+            <button id="encryptMessage" class="mt-8 cyber-button w-full mb-4">Encapsulate Hashed Identifier</button>
+            
+            <h2 class="mb-2 title-glow text-right">Quantum-Safe Encrypt</h2>
+            <pre id="encryptConsoleOutput"></pre>
+            
+            <h3 class="mt-4 title-glow text-right">KEM Encapsulation Content</h3>
+            <pre id="encryptedContent"></pre>
+
+            <div class="divider"></div>
+
+            <button id="decryptMessage" class="cyber-button w-full mb-4">Decrypt KEM</button>
+            
+            <h2 class="mb-2 title-glow text-right">Quantum-Safe Decrypt</h2>
+            <pre id="decryptConsoleOutput"></pre>
+            
+            <h3 class="mt-4 title-glow text-right">Decrypted KEM Content</h3>
+            <pre id="decryptedContent"></pre>
+        </div>
+
+        <!-- Section 5: On-chain DID Credential -->
+        <div id="did-cred" class="section">
+            <span class="section-title">5# On-chain DID Credential</span>
+            
+            <h2 class="mt-4 mb-2 title-glow text-right">Multisig Identifier</h2>
+            <pre id="didCredential">None</pre>
+
+            <button id="makeDIDCredential" class="cyber-button w-full my-4">Issue Multisig DID Credential</button>
+
+            <h3 class="mb-2 title-glow text-right">Issued Verifiable Credential</h3>
+            <pre id="multisigCredential">None</pre>
+
+            <button id="publishBlockchain" class="cyber-button w-full my-4">Publish to Blockchain</button>
+            
+            <h3 class="mb-2 title-glow text-right">Quantumeum Ledger Console</h3>
+            <pre id="blockchainOutput"></pre>
+
+            <div class="flex gap-4 mt-4">
+                <button class="cyber-button flex-1" onclick="window.open('https://quantumeum.web.app/qscanner', '_blank')">
+                    >> Blockchain
+                </button>
+                <button class="cyber-button flex-1" onclick="goToCredential()">
+                    >> Credential
+                </button>
             </div>
         </div>
 
-        <button id="showKey" class="cyber-button w-full mb-4">Load Key</button>
-        
-        <h3 class="mb-2 title-glow">All Keys in Slot</h3>
-        <pre id="slotConsoleOutput"></pre>
+        <footer class="footer mt-8">
+            <p>The <a href="https://ironcap.ca"><strong>IronCAP™</strong></a> ICCHSM Toolkits allow vendors of a wide variety of vertical applications to easily transform their products, ensuring protection against cyberattacks from not only today's classical computing world but also future threats from quantum computers.</p> 
+            <p>⬙</p>
+            <p><a href="https://www.01com.com"><strong>01 Communique Laboratory</strong></a> and <a href="https://www.realmatter.io"><strong>Real Matter Technology</strong></a> combine their expertise in Quantum-Safe <a href="https://ironcap.ca"><strong>IronCAP</strong></a> and <a href="https://quantumatter-blockchain.web.app"><strong>Chip-Level Blockchain</strong></a> technologies to deliver post-quantum cryptography (PQC) solutions that redefine security standards for the financial world.</p> 
+            <p>⬙</p>
+            <p>Presented by <a href="https://www.realmatter.io"><strong>Real Matter Technology Limited</strong></a>, 20250307T1105 Firebase</p>        
+        </footer>
 
-        <div class="mt-4">
-            <label class="block mb-2">Input message:</label>
-            <input type="text" id="message" class="cyber-input"/>
-            <div class="flex gap-2 mt-2">
-                <button id="saveMessage" class="cyber-button">ENTER</button>
-                <button id="hashMessage" class="cyber-button">HASH</button>
-            </div>
-        </div>
-
-        <h3 class="mt-4 title-glow">Hashed Content</h3>
-        <pre id="hashedContent"></pre>
-    </div>
-
-    <!-- Section 3: Quantum-safe Multisig -->
-    <div id="multisig" class="section">
-        <span class="section-title">Quantum-safe Multisig</span>
-        
-        <button id="signMessage" class="cyber-button w-full mb-4">Sign Message</button>
-        
-        <h2 class="mb-2 title-glow">Quantum-Safe Sign</h2>
-        <pre id="signConsoleOutput"></pre>
-        
-        <h3 class="mt-4 title-glow">Signature Content</h3>
-        <pre id="signatureContent"></pre>
-
-        <button id="verifySignature" class="cyber-button w-full mt-4">Verify Signature</button>
-        <pre id="verifyConsoleOutput" class="mt-4"></pre>
-    </div>
-
-    <!-- Section 4: Quantum-safe Key Encapsulation -->
-    <div id="key-encap" class="section">
-        <span class="section-title">Quantum-safe Key Encapsulation</span>
-        
-        <button id="encryptMessage" class="cyber-button w-full mb-4">Encrypt Hashed Message</button>
-        
-        <h2 class="mb-2 title-glow">Quantum-Safe Encrypt</h2>
-        <pre id="encryptConsoleOutput"></pre>
-        
-        <h3 class="mt-4 title-glow">Encrypted Content</h3>
-        <pre id="encryptedContent"></pre>
-
-        <div class="divider"></div>
-
-        <button id="decryptMessage" class="cyber-button w-full mb-4">Decrypt Message</button>
-        
-        <h2 class="mb-2 title-glow">Quantum-Safe Decrypt</h2>
-        <pre id="decryptConsoleOutput"></pre>
-        
-        <h3 class="mt-4 title-glow">Decrypted Binary Content</h3>
-        <pre id="decryptedContent"></pre>
-    </div>
-
-    <!-- Section 5: On-chain DID Credential -->
-    <div id="did-cred" class="section">
-        <span class="section-title">On-chain DID Credential</span>
-        
-        <h2 class="mb-2 title-glow">Multisig DID</h2>
-        <pre id="didCredential">None</pre>
-
-        <button id="makeDIDCredential" class="cyber-button w-full my-4">Make Multisig DID Credential</button>
-
-        <h3 class="mb-2 title-glow">Constructed Verifiable Credential</h3>
-        <pre id="multisigCredential">None</pre>
-
-        <button id="writeBlockchain" class="cyber-button w-full my-4">Write Blockchain</button>
-        
-        <h3 class="mb-2 title-glow">Quantumeum Blockchain Console</h3>
-        <pre id="blockchainOutput"></pre>
-
-        <div class="flex gap-4 mt-4">
-            <button class="cyber-button flex-1" onclick="window.open('https://quantumeum.web.app/qscanner', '_blank')">
-                Go to Blockchain
-            </button>
-            <button class="cyber-button flex-1" onclick="goToCredential()">
-                Go to Credential
-            </button>
-        </div>
-    </div>
-
-    <footer class="text-center mt-8 text-cyber-blue">
-        Real Matter Technology Limited 2025 Feb
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Function to handle section highlighting
-        function activateSection(sectionId) {
-            $('.section').removeClass('active');
-            $(`#${sectionId}`).addClass('active');
-        }
-
-        // Function to scroll to section
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-            activateSection(sectionId);
-        }
-
-        // Function to set slot
-        function setSlot(value) {
-            document.getElementById("slot").value = value;
-        }
-
-        // Function to go to credential
-        function goToCredential() {
-            let didCredential = $("#didCredential").text().trim();
-            if (didCredential && didCredential !== 'None') {
-                window.open('https://quantumeum.web.app/qvisa/' + didCredential, '_blank');
-            } else {
-                alert("Please generate a DID Credential first!");
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            // Function to handle section highlighting
+            function activateSection(sectionId) {
+                $('.section').removeClass('active');
+                $(`#${sectionId}`).addClass('active');
             }
-        }
 
-        $(document).ready(function() {
-            // Add input focus handlers for section activation
-            $('.section input, .section button').on('focus click', function() {
-                const sectionId = $(this).closest('.section').attr('id');
+            // Function to scroll to section
+            function scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                section.scrollIntoView({ behavior: 'smooth' });
                 activateSection(sectionId);
-            });
+            }
 
-            // ID mapping for mechanism combinations
-            const idMapping = {
-                'ckm-icc-shake256-mm-falcon': '322600B',
-                'ckm-icc-shake256-kyber-falcon': '322600C',
-                'ckm-icc-shake256-cm-falcon': '3226010',
-                'ckm-icc-shake256-mm-dilithium': '3226012',
-                'ckm-icc-shake256-kyber-dilithium': '3226013',
-                'ckm-icc-shake256-cm-dilithium': '3226014',
-                'ckm-icc-shake256-mm-sphincsplus-simple': '322601A',
-                'ckm-icc-shake256-kyber-sphincsplus-simple': '322601B',
-                'ckm-icc-shake256-cm-sphincsplus-simple': '322601C'
-            };
+            // Function to set slot
+            function setSlot(value) {
+                document.getElementById("slot").value = value;
+            }
 
-            $('.cyber-button[data-group="signature"][data-value="sphincsplus-simple"]').addClass('active');
-            $('.cyber-button[data-group="encryption"][data-value="mm"]').addClass('active');
-            updateKeyAndId();
-
-            $('.cyber-button[data-group]').click(function() {
-                let group = $(this).data('group');
-                let value = $(this).data('value');
-
-                $(`.cyber-button[data-group='${group}']`).removeClass('active');
-                $(this).addClass('active');
-
-                updateKeyAndId();
-            });
-
-            function updateKeyAndId() {
-                let signature = $('.cyber-button[data-group="signature"].active').data('value');
-                let encryption = $('.cyber-button[data-group="encryption"].active').data('value');
-
-                if (signature && encryption) {
-                    let key = `ckm-icc-shake256-${encryption}-${signature}`;
-                    $('#quantumSafeKey').text(key);
-                    let newId = idMapping[key] || '';
-                    if (newId) {
-                        $('#id').val(newId);
-                    } else {
-                        console.warn('No mapping found for mechanism: ' + key);
-                    }
+            // Function to go to credential
+            function goToCredential() {
+                let didCredential = $("#didCredential").text().trim();
+                if (didCredential && didCredential !== 'None') {
+                    window.open('https://quantumeum.web.app/qvisa/' + didCredential, '_blank');
+                } else {
+                    alert("Please generate a DID Credential first!");
                 }
             }
 
-            // Show Key
-            $('#showKey').click(function() {
-                const data = {
-                    slot: $('#slot').val(),
-                    pin: $('#pin').val()
-                };
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/show_key',
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        $('#slotConsoleOutput').text(response.console_log);
-                    },
-                    error: function(xhr, status, error) {
-                        $('#slotConsoleOutput').text('Error: ' + error);
-                    }
+            $(document).ready(function() {
+                // Add input focus handlers for section activation
+                $('.section input, .section button').on('focus click', function() {
+                    const sectionId = $(this).closest('.section').attr('id');
+                    activateSection(sectionId);
                 });
-            });
 
-            // Save Message
-            $('#saveMessage').click(function() {
-                const message = $('#message').val();
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/write_message',
-                    method: 'POST',
-                    data: { message },
-                    success: function(response) {
-                        alert(response.status);
-                    },
-                    error: function(xhr, status, error) {
-                        alert('Error: ' + error);
-                    }
-                });
-            });
-
-            // Hash Message
-            $('#hashMessage').click(function() {
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/hash_message',
-                    method: 'POST',
-                    success: function(response) {
-                        $('#hashedContent').text(response.binary_content || response.error);
-                    },
-                    error: function(xhr, status, error) {
-                        $('#hashedContent').text('Error: ' + error);
-                    }
-                });
-            });
-
-            // Sign Message
-            $('#signMessage').click(function() {
-                const data = {
-                    slot: $('#slot').val(),
-                    pin: $('#pin').val(),
-                    id: $('#id').val(),
-                    mechanism: $('#quantumSafeKey').text()
-                };
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/sign_message',
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        $('#signConsoleOutput').text(response.console_log);
-                        $.get('https://34.30.179.29:5000/read_signature', function(data) {
-                            $('#signatureContent').text(data.content || 'No signature found');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        $('#signConsoleOutput').text('Error: ' + error);
-                    }
-                });
-            });
-
-            // Verify Signature
-            $('#verifySignature').click(function() {
-                const data = {
-                    slot: $('#slot').val(),
-                    pin: $('#pin').val(),
-                    id: $('#id').val(),
-                    mechanism: $('#quantumSafeKey').text()
-                };
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/verify_signature',
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        $('#verifyConsoleOutput').text(response.console_log);
-                    },
-                    error: function(xhr, status, error) {
-                        $('#verifyConsoleOutput').text('Error: ' + error);
-                    }
-                });
-            });
-
-            // Encrypt Message
-            $('#encryptMessage').click(function() {
-                const data = {
-                    slot: $('#slot').val(),
-                    pin: $('#pin').val(),
-                    id: $('#id').val(),
-                    mechanism: $('#quantumSafeKey').text()
-                };
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/encrypt_message',
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        $('#encryptConsoleOutput').text(response.console_log);
-                        $.get('https://34.30.179.29:5000/read_encrypted', function(data) {
-                            $('#encryptedContent').text(data.content || 'No encrypted content');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        $('#encryptConsoleOutput').text('Error: ' + error);
-                    }
-                });
-            });
-
-            // Decrypt Message
-            $('#decryptMessage').click(function() {
-                const data = {
-                    slot: $('#slot').val(),
-                    pin: $('#pin').val(),
-                    id: $('#id').val(),
-                    mechanism: $('#quantumSafeKey').text()
-                };
-                $.ajax({
-                    url: 'https://34.30.179.29:5000/decrypt_message',
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        $('#decryptConsoleOutput').text(response.console_log);
-                        $.get('https://34.30.179.29:5000/read_decrypted', function(data) {
-                            $('#decryptedContent').text(data.content || 'No decrypted content');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        $('#decryptConsoleOutput').text('Error: ' + error);
-                    }
-                });
-            });
-
-            // DID Credential Generation
-            $('#makeDIDCredential').click(function() {
-                let hashedContent = $('#hashedContent').text().trim();
-                let signConsoleOutput = $('#signConsoleOutput').text().trim();
-                let quantumKey = $('#quantumSafeKey').text().trim();
-                let didCredential = 'did-icchsm-rsa-' + hashedContent;
-
-                $('#didCredential').text(didCredential);
-
-                const credentialData = {
-                    '@context': 'ICCHSM Multisig Credential V1 JS',
-                    'cName': 'Quantum-Safe Multisig',
-                    'claim': {
-                        'did-icchsm-rsa': hashedContent,
-                        'muitiSig': signConsoleOutput,
-                        'quantumKey': quantumKey
-                    },
-                    'contract': {
-                        'method': 'Enhancing RSA signatures with iconCAP Quantum-Safe multisig, embedding hashed signatures into DIDs, and securing validation via Verifiable Credentials on Real Matter blockchain.',
-                        'developer': '01 Communique Lab with Real Matter Technology'
-                    },
-                    'proofSignature': '0x813caf1d9b115cf3d8d36de1696f9a44c7620274eb656e7e7721e22be54f72cd793dd9e3512453bf1dbd42005617d06af5ec970a2b2bd34725034561eea6ba5d1b',
-                    'publicKey': '0x0425c80f2d99b888584a19a7253bf47b65094640e5cfb2489d79b00955849b50ee55a0046e131375c0028eef5c97e1b40e2465ff270111bca578f83390915b222a'
+                // ID mapping for mechanism combinations
+                const idMapping = {
+                    'ckm-icc-shake256-mm-falcon': '322600B',
+                    'ckm-icc-shake256-kyber-falcon': '322600C',
+                    'ckm-icc-shake256-cm-falcon': '3226010',
+                    'ckm-icc-shake256-mm-dilithium': '3226012',
+                    'ckm-icc-shake256-kyber-dilithium': '3226013',
+                    'ckm-icc-shake256-cm-dilithium': '3226014',
+                    'ckm-icc-shake256-mm-sphincsplus-simple': '322601A',
+                    'ckm-icc-shake256-kyber-sphincsplus-simple': '322601B',
+                    'ckm-icc-shake256-cm-sphincsplus-simple': '322601C'
                 };
 
-                $('#multisigCredential').text(JSON.stringify(credentialData, null, 2));
-            });
+                $('.cyber-button[data-group="signature"][data-value="sphincsplus-simple"]').addClass('active');
+                $('.cyber-button[data-group="encryption"][data-value="mm"]').addClass('active');
+                updateKeyAndId();
 
-            // Write to Blockchain
-            $('#writeBlockchain').click(function() {
-                let didCredential = $('#didCredential').text().trim();
-                let dMessage = $('#multisigCredential').text().trim();
+                $('.cyber-button[data-group]').click(function() {
+                    let group = $(this).data('group');
+                    let value = $(this).data('value');
 
-                if (!didCredential || dMessage === 'None') {
-                    alert('Please generate the DID Credential first!');
-                    return;
+                    $(`.cyber-button[data-group='${group}']`).removeClass('active');
+                    $(this).addClass('active');
+
+                    updateKeyAndId();
+                });
+
+                function updateKeyAndId() {
+                    let signature = $('.cyber-button[data-group="signature"].active').data('value');
+                    let encryption = $('.cyber-button[data-group="encryption"].active').data('value');
+
+                    if (signature && encryption) {
+                        let key = `ckm-icc-shake256-${encryption}-${signature}`;
+                        $('#quantumSafeKey').text(key);
+                        let newId = idMapping[key] || '';
+                        if (newId) {
+                            $('#id').val(newId);
+                        } else {
+                            console.warn('No mapping found for mechanism: ' + key);
+                        }
+                    }
                 }
 
-                const blockchainData = {
-                    command: 'createVc',
-                    dMessage: JSON.parse(dMessage),
-                    from: 'quantumeum',
-                    to: didCredential,
-                    zHash: '0x0e22c3c000bca18388a982dd56f7c34e90abb753de674e22dfa6f9b1f9511276',
-                    zSignature: '0xfc156067858c608434f3c3360381d99bbfda72a49020af65410304da754db6991b26fabdc4dfafa6098ddd98f1c3c598abc8f357d4743fe22ad76387b7aef2ae1c'
-                };
+                // Firebase Function URLs
+                const WRITE_MESSAGE_URL = "https://writemessage-kez6dpnjlq-uc.a.run.app";
+                const HASH_MESSAGE_URL = "https://hashmessage-kez6dpnjlq-uc.a.run.app";
+                const SHOW_KEY_URL = "https://showkey-kez6dpnjlq-uc.a.run.app";
+                const SIGN_MESSAGE_URL = "https://signmessage-kez6dpnjlq-uc.a.run.app";
+                const READ_SIGNATURE_URL = "https://readsignature-kez6dpnjlq-uc.a.run.app";
+                const VERIFY_SIGNATURE_URL = "https://verifysignature-kez6dpnjlq-uc.a.run.app";
+                const ENCRYPT_MESSAGE_URL = "https://encryptmessage-kez6dpnjlq-uc.a.run.app";
+                const READ_ENCRYPTED_URL = "https://readencrypted-kez6dpnjlq-uc.a.run.app";
+                const DECRYPT_MESSAGE_URL = "https://decryptmessage-kez6dpnjlq-uc.a.run.app";
+                const READ_DECRYPTED_URL = "https://readdecrypted-kez6dpnjlq-uc.a.run.app";
+                
+                $('#showKey').click(function () {
+                    $.ajax({
+                        url: SHOW_KEY_URL,
+                        method: "POST",
+                        data: { slot: $('#slot').val(), pin: $('#pin').val() },
+                        dataType: "json",
+                        success: function (response) {
+                            $('#slotConsoleOutput').text(response.console_log);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#slotConsoleOutput').text("Error: " + error);
+                        }
+                    });
+                });
 
-                $.ajax({
-                    url: 'https://httprequest-3wfs3qaqoa-uc.a.run.app',
-                    type: 'PUT',
-                    contentType: 'application/json',
-                    data: JSON.stringify(blockchainData),
-                    success: function(response) {
+                $('#saveMessage').click(function () {
+                    $.ajax({
+                        url: WRITE_MESSAGE_URL,
+                        method: "POST",
+                        data: { message: $('#message').val() },
+                        dataType: "json",
+                        success: function (response) {
+                            alert(response.status);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            alert("Error: " + error);
+                        }
+                    });
+                });
+
+                $('#hashMessage').click(function () {
+                    $.ajax({
+                        url: HASH_MESSAGE_URL,
+                        method: "POST",
+                        data: {},
+                        dataType: "json",
+                        success: function (response) {
+                            $('#hashedContent').text(response.binary_content || response.error);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#hashedContent').text("Error: " + error);
+                        }
+                    });
+                });
+
+                $('#signMessage').click(function () {
+                    $.ajax({
+                        url: SIGN_MESSAGE_URL,
+                        method: "POST",
+                        data: {
+                            slot: $('#slot').val(),
+                            pin: $('#pin').val(),
+                            id: $('#id').val(),
+                            mechanism: $('#quantumSafeKey').text()
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            $('#signConsoleOutput').text(response.console_log);
+                            
+                            // Get signature content
+                            $.ajax({
+                                url: READ_SIGNATURE_URL,
+                                method: "GET",
+                                dataType: "json",
+                                success: function (data) {
+                                    $('#signatureContent').text(data.content || 'No signature found');
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error reading signature:", error);
+                                    $('#signatureContent').text("Error reading signature: " + error);
+                                }
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#signConsoleOutput').text("Error: " + error);
+                        }
+                    });
+                });
+
+                $('#verifySignature').click(function () {
+                    $.ajax({
+                        url: VERIFY_SIGNATURE_URL,
+                        method: "POST",
+                        data: {
+                            slot: $('#slot').val(),
+                            pin: $('#pin').val(),
+                            id: $('#id').val(),
+                            mechanism: $('#quantumSafeKey').text()
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            $('#verifyConsoleOutput').text(response.console_log);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#verifyConsoleOutput').text("Error: " + error);
+                        }
+                    });
+                });
+
+                $('#encryptMessage').click(function () {
+                    $.ajax({
+                        url: ENCRYPT_MESSAGE_URL,
+                        method: "POST",
+                        data: {
+                            slot: $('#slot').val(),
+                            pin: $('#pin').val(),
+                            id: $('#id').val(),
+                            mechanism: $('#quantumSafeKey').text()
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            $('#encryptConsoleOutput').text(response.console_log);
+                            
+                            // Get encrypted content
+                            $.ajax({
+                                url: READ_ENCRYPTED_URL,
+                                method: "GET",
+                                dataType: "json",
+                                success: function (data) {
+                                    $('#encryptedContent').text(data.content || 'No encrypted content');
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error reading encrypted content:", error);
+                                    $('#encryptedContent').text("Error reading encrypted content: " + error);
+                                }
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#encryptConsoleOutput').text("Error: " + error);
+                        }
+                    });
+                });
+
+                $('#decryptMessage').click(function () {
+                    $.ajax({
+                        url: DECRYPT_MESSAGE_URL,
+                        method: "POST",
+                        data: {
+                            slot: $('#slot').val(),
+                            pin: $('#pin').val(),
+                            id: $('#id').val(),
+                            mechanism: $('#quantumSafeKey').text()
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            $('#decryptConsoleOutput').text(response.console_log);
+                            
+                            // Get decrypted content
+                            $.ajax({
+                                url: READ_DECRYPTED_URL,
+                                method: "GET",
+                                dataType: "json",
+                                success: function (data) {
+                                    $('#decryptedContent').text(data.content || 'No decrypted content');
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error reading decrypted content:", error);
+                                    $('#decryptedContent').text("Error reading decrypted content: " + error);
+                                }
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            $('#decryptConsoleOutput').text("Error: " + error);
+                        }
+                    });
+                });          
+
+                // DID Credential Generation
+                $('#makeDIDCredential').click(function() {
+                    let hashedContent = $('#hashedContent').text().trim();
+                    let signConsoleOutput = $('#signConsoleOutput').text().trim();
+                    let quantumKey = $('#quantumSafeKey').text().trim();
+                    let didCredential = 'did-icchsm-rsa-' + hashedContent;
+                    let signatureContent = $('#signatureContent').text().trim();
+
+                    $('#didCredential').text(didCredential);
+
+                    const credentialData = {
+                        '@context': 'ICCHSM Multisig Credential V1 JS',
+                        'cName': 'Quantum-Safe Multisig',
+                        'claim': {
+                            'did-icchsm-rsa': hashedContent,
+                            'muitiSig': signConsoleOutput,
+                            'quantumKey': quantumKey
+                        },
+                        'contract': {
+                            'method': 'Enhancing RSA signatures with iconCAP Quantum-Safe multisig, embedding hashed signatures into DIDs, and securing validation via Verifiable Credentials on Real Matter blockchain.',
+                            'developer': '01 Communique Lab with Real Matter Technology'
+                        },
+                        'proofSignature': signatureContent,
+                        'publicKey': '0xhidden_demo_key'
+                    };
+
+                    $('#multisigCredential').text(JSON.stringify(credentialData, null, 2));
+                });
+
+                // Publish to Blockchain
+                $('#publishBlockchain').click(function() {
+                    let didCredential = $('#didCredential').text().trim();
+                    let dMessage = $('#multisigCredential').text().trim();
+                    let hashedContent = $('#hashedContent').text().trim();
+                    let signatureContent = $('#signatureContent').text().trim();
+
+                    if (!didCredential || dMessage === 'None') {
+                        alert('Please generate the DID Credential first!');
+                        return;
+                    }
+
+                    const blockchainData = {
+                        command: 'createVc',
+                        dMessage: JSON.parse(dMessage),
+                        from: 'quantumeum',
+                        to: didCredential,
+                        zHash: hashedContent,
+                        zSignature: signatureContent
+                    };
+
+                    $.ajax({
+                        url: 'https://us-central1-quantumsafe-multisig.cloudfunctions.net/publishBlockchain',
+                        type: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify(blockchainData),
+                        success: function(response) {
                         $('#blockchainOutput').text(JSON.stringify(response, null, 2));
-                    },
-                    error: function(error) {
+                        },
+                        error: function(error) {
                         $('#blockchainOutput').text('Error: ' + JSON.stringify(error, null, 2));
+                        }
+                    });
+                    });
+
+                // Check for PIN on startup
+                function checkAndPromptForPin() {
+                    if (!$('#pin').val()) {
+                        // Create modal for PIN input
+                        const pinModal = $('<div>').addClass('fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50');
+                        const modalContent = $('<div>').addClass('bg-gray-900 p-6 rounded-lg border border-cyan-400 shadow-lg max-w-sm w-full');
+                        
+                        modalContent.append($('<h3>').addClass('text-cyan-400 text-xl mb-4 text-center').text('Welcome to ICCHSM'));
+                        const pinInput = $('<input>').attr({
+                            placeholder: 'Enter Your PIN',
+                            id: 'modal-pin-input'
+                        }).addClass('cyber-input mb-4');
+                        
+                        const btnContainer = $('<div>').addClass('flex justify-center');
+                        const submitBtn = $('<button>').addClass('cyber-button px-4').text('Enter');
+                        
+                        btnContainer.append(submitBtn);
+                        modalContent.append(pinInput, btnContainer);
+                        pinModal.append(modalContent);
+                        
+                        $('body').append(pinModal);
+                        
+                        // Focus on the input
+                        setTimeout(() => {
+                            pinInput.focus();
+                        }, 100);
+                        
+                        // Handle submit
+                        submitBtn.on('click', function() {
+                            const pinValue = pinInput.val();
+                            if (pinValue) {
+                                $('#pin').val(pinValue);
+                                pinModal.remove();
+                            }
+                        });
+                        
+                        // Also submit on Enter key
+                        pinInput.on('keypress', function(e) {
+                            if (e.which === 13) {
+                                const pinValue = pinInput.val();
+                                if (pinValue) {
+                                    $('#pin').val(pinValue);
+                                    pinModal.remove();
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                // Clear PIN input in the HTML
+                $('#pin').val('');
+                
+                // Check for PIN on load
+                checkAndPromptForPin();
+                
+                // Add check when PIN field is cleared
+                $('#pin').on('change', function() {
+                    if (!$(this).val()) {
+                        checkAndPromptForPin();
                     }
                 });
             });
-        });
-    </script>
+        </script>
+    </div>
   </body>
 </html>
-
-                
