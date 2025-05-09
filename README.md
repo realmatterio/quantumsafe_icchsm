@@ -52,11 +52,11 @@ In this step, you'll choose the post-quantum cryptography (PQC) algorithms for s
 
 | Category | Method | Description |
 |----------|--------|-------------|
-| **Signature Methods** | Sphincs+ | Stateless hash-based signature scheme (default) |
-| | Dilithium | Lattice-based signature scheme |
-| | Falcon | Compact lattice-based signature scheme |
+| **Signature Methods** | Sphincs+ SLH-DSA (FIPS 205) | Stateless hash-based signature scheme (default) |
+| | Dilithium ML-DSA (FIPS 204) | Lattice-based signature scheme |
+| | Falcon FN-DSA (FIPS 203) | Compact lattice-based signature scheme |
 | **Encryption Methods** | Modern McEliece | Enhanced version of the code-based encryption (default) |
-| | Kyber ML-KEM | Module-lattice based key encapsulation mechanism |
+| | Kyber ML-KEM (FIPS 203) | Module-lattice based key encapsulation mechanism |
 | | Classic McEliece | Code-based encryption |
 
 The selected combination is shown at the bottom of this section as your "Quantum-Safe Key".
